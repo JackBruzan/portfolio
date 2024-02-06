@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: angular-site
+  name: portfolio-site
   namespace: football-prod
 spec:
   dnsNames:
-    - www.bruzcofantasy.com
-    - bruzcofantasy.com
+    - www.bruzco.com
+    - bruzco.com
   secretName: bruzcofantasy-tls
   issuerRef:
     name: letsencrypt-cluster-issuer

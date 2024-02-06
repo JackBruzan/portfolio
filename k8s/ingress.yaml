@@ -2,33 +2,33 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: angular-site-ingress
+  name: portfolio-site-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
 spec:
   tls:
     - hosts:
-        - www.bruzcofantasy.com
-        - bruzcofantasy.com
+        - www.bruzco.com
+        - bruzco.com
       secretName: bruzcofantasy-tls
   rules:
-    - host: 'www.bruzcofantasy.com'
+    - host: "www.bruzco.com"
       http:
         paths:
           - pathType: Prefix
-            path: '/'
+            path: "/"
             backend:
               service:
-                name: angular-site-internal-service
+                name: portfolio-site-internal-service
                 port:
                   number: 4200
-    - host: 'bruzcofantasy.com'
+    - host: "bruzco.com"
       http:
         paths:
           - pathType: Prefix
-            path: '/'
+            path: "/"
             backend:
               service:
-                name: angular-site-internal-service
+                name: portfolio-site-internal-service
                 port:
                   number: 4200
