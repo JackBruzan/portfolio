@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-site-deploy
+  labels:
+    app: angular-site
+spec:
+  selector:
+    matchLabels:
+      app: angular-site
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: angular-site
+    spec:
+      containers:
+        - name: angular-site
+          image: jackbruzan/bruzco_football-projections_angular:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: '800Mi'
+              cpu: '500m'
+            limits:
+              memory: '1000Mi'
+              cpu: '700m'
+      imagePullSecrets:
+        - name: dockercreds

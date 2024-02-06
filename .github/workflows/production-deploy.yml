@@ -1,0 +1,46 @@
+name: Push to Docker Hub
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-andd-deploy-container:
+    name: Build and deploy Docker Hub container
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{secrets.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_PASSWORD}}
+
+      - name: Publish to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: jackbruzan/bruzco_football-projections_angular:latest, jackbruzan/bruzco_football-projections_angular:${{github.run_number}}
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: "v1.26.1" # default is latest stable
+        id: install
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{secrets.DIGITAL_OCEAN_TOKEN}}
+
+      - name: Save k8s configuration
+        run: doctl k c cfg s k8keboss # set the local k8s configuration to the k8keboss configuration
+
+      - name: Apply k8s configurations
+        run: |
+          kubectl config set-context --current --namespace=football-prod
+          kubectl apply -f ./k8s/deploy.yaml --namespace=football-prod
+          kubectl apply -f ./k8s/service.yaml --namespace=football-prod
+          kubectl apply -f ./k8s/ingress.yaml --namespace=football-prod
+          kubectl rollout restart deployment angular-site-deploy -n football-prod
