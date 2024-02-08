@@ -2,12 +2,12 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: portfolio-site
-  namespace: football-prod
+  namespace: portfolio
 spec:
   dnsNames:
     - www.bruzco.com
     - bruzco.com
-  secretName: bruzcofantasy-tls
+  secretName: portfolio-tls
   issuerRef:
     name: letsencrypt-cluster-issuer
     kind: ClusterIssuer

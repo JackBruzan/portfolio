@@ -10,7 +10,7 @@ spec:
     - hosts:
         - www.bruzco.com
         - bruzco.com
-      secretName: bruzcofantasy-tls
+      secretName: portfolio-tls
   rules:
     - host: "www.bruzco.com"
       http:
