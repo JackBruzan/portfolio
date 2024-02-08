@@ -1,13 +1,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: portfolio-site
+  name: portfolio-site-secret
   namespace: portfolio
 spec:
   dnsNames:
     - www.bruzco.com
     - bruzco.com
-  secretName: portfolio-tls
+  secretName: portfolio-tls-secret
   issuerRef:
     name: letsencrypt-cluster-issuer
     kind: ClusterIssuer

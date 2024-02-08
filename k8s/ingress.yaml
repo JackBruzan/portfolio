@@ -10,7 +10,7 @@ spec:
     - hosts:
         - www.bruzco.com
         - bruzco.com
-      secretName: portfolio-tls
+      secretName: portfolio-tls-secret
   rules:
     - host: "www.bruzco.com"
       http:
@@ -29,6 +29,6 @@ spec:
             path: "/"
             backend:
               service:
-                name: pportfolio-site-internal-service
+                name: portfolio-site-internal-service
                 port:
                   number: 4200
