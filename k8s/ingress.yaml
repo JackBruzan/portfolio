@@ -29,6 +29,6 @@ spec:
             path: "/"
             backend:
               service:
-                name: portfolio-site-internal-service
+                name: pportfolio-site-internal-service
                 port:
                   number: 4200
