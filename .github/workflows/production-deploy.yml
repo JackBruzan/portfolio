@@ -43,4 +43,4 @@ jobs:
           kubectl apply -f ./k8s/deploy.yaml --namespace=football-prod
           kubectl apply -f ./k8s/service.yaml --namespace=football-prod
           kubectl apply -f ./k8s/ingress.yaml --namespace=football-prod
-          kubectl rollout restart deployment portfolio-site-deploy -n football-prod
+          kubectl rollout restart deployment angular-site-deploy -n football-prod
