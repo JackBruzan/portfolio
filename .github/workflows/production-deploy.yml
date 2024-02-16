@@ -39,8 +39,8 @@ jobs:
 
       - name: Apply k8s configurations
         run: |
-          kubectl config set-context --current --namespace=football-prod
-          kubectl apply -f ./k8s/deploy.yaml --namespace=football-prod
-          kubectl apply -f ./k8s/service.yaml --namespace=football-prod
-          kubectl apply -f ./k8s/ingress.yaml --namespace=football-prod
-          kubectl rollout restart deployment angular-site-deploy -n football-prod
+          kubectl config set-context --current --namespace=portfolio
+          kubectl apply -f ./k8s/deploy.yaml --namespace=portfolio
+          kubectl apply -f ./k8s/service.yaml --namespace=portfolio
+          kubectl apply -f ./k8s/ingress.yaml --namespace=portfolio
+          kubectl rollout restart deployment angular-site-deploy -n portfolio
