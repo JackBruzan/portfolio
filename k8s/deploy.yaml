@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: angular-site
-          image: jackbruzan/bruzco_football-projections_angular:latest
+          image: jackbruzan/portfolio:latest
           imagePullPolicy: Always
           resources:
             requests:

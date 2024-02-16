@@ -10,9 +10,9 @@ spec:
     - hosts:
         - www.bruzco.com
         - bruzco.com
-      secretName: bruzcofantasy-tls
+      secretName: bruzcofantasy-tls-secret
   rules:
-    - host: "www.bruzcofantasy.com"
+    - host: "www.bruzco.com"
       http:
         paths:
           - pathType: Prefix
@@ -21,8 +21,8 @@ spec:
               service:
                 name: angular-site-internal-service
                 port:
-                  number: 4200
-    - host: "bruzcofantasy.com"
+                  number: 4201
+    - host: "bruzco.com"
       http:
         paths:
           - pathType: Prefix
@@ -31,4 +31,4 @@ spec:
               service:
                 name: angular-site-internal-service
                 port:
-                  number: 4200
+                  number: 4201
