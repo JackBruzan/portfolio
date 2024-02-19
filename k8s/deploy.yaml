@@ -25,10 +25,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              memory: "100Mi"
+              memory: "400Mi"
               cpu: "400m"
             limits:
-              memory: "600Mi"
-              cpu: "600m"
+              memory: "1000Mi"
+              cpu: "800m"
       imagePullSecrets:
         - name: dockercreds
