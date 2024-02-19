@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: angular-site-deploy
+  name: portfolio-deploy
   labels:
-    app: angular-site
+    app: portfolio
 spec:
   selector:
     matchLabels:
-      app: angular-site
+      app: portfolio
   replicas: 1
   strategy:
     type: RollingUpdate
@@ -17,18 +17,18 @@ spec:
   template:
     metadata:
       labels:
-        app: angular-site
+        app: portfolio
     spec:
       containers:
-        - name: angular-site
+        - name: portfolio
           image: jackbruzan/portfolio:latest
           imagePullPolicy: Always
           resources:
             requests:
-              memory: "800Mi"
-              cpu: "500m"
+              memory: "100Mi"
+              cpu: "400m"
             limits:
-              memory: "1000Mi"
-              cpu: "700m"
+              memory: "600Mi"
+              cpu: "600m"
       imagePullSecrets:
         - name: dockercreds
