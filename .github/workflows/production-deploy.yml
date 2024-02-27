@@ -23,24 +23,24 @@ jobs:
           push: true
           tags: jackbruzan/portfolio:latest, jackbruzan/portfolio:${{github.run_number}}
 
-      - name: Install kubectl
-        uses: azure/setup-kubectl@v3
-        with:
-          version: "v1.26.1" # default is latest stable
-        id: install
+      # - name: Install kubectl
+      #   uses: azure/setup-kubectl@v3
+      #   with:
+      #     version: "v1.26.1" # default is latest stable
+      #   id: install
 
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
-        with:
-          token: ${{secrets.DIGITAL_OCEAN_TOKEN}}
+      # - name: Install doctl
+      #   uses: digitalocean/action-doctl@v2
+      #   with:
+      #     token: ${{secrets.DIGITAL_OCEAN_TOKEN}}
 
-      - name: Save k8s configuration
-        run: doctl k c cfg s k8keboss # set the local k8s configuration to the k8keboss configuration
+      # - name: Save k8s configuration
+      #   run: doctl k c cfg s k8keboss # set the local k8s configuration to the k8keboss configuration
 
-      - name: Apply k8s configurations
-        run: |
-          kubectl config set-context --current --namespace=portfolio
-          kubectl apply -f ./k8s/deploy.yaml --namespace=portfolio
-          kubectl apply -f ./k8s/service.yaml --namespace=portfolio
-          kubectl apply -f ./k8s/ingress.yaml --namespace=portfolio
-          kubectl rollout restart deployment portfolio-deploy -n portfolio
+      # - name: Apply k8s configurations
+      #   run: |
+      #     kubectl config set-context --current --namespace=portfolio
+      #     kubectl apply -f ./k8s/deploy.yaml --namespace=portfolio
+      #     kubectl apply -f ./k8s/service.yaml --namespace=portfolio
+      #     kubectl apply -f ./k8s/ingress.yaml --namespace=portfolio
+      #     kubectl rollout restart deployment portfolio-deploy -n portfolio

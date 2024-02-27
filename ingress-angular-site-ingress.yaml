@@ -1,0 +1,44 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"kubernetes.io/ingress.class":"nginx"},"name":"angular-site-ingress","namespace":"football-prod"},"spec":{"rules":[{"host":"www.bruzcofantasy.com","http":{"paths":[{"backend":{"service":{"name":"angular-site-internal-service","port":{"number":4200}}},"path":"/","pathType":"Prefix"}]}},{"host":"bruzcofantasy.com","http":{"paths":[{"backend":{"service":{"name":"angular-site-internal-service","port":{"number":4200}}},"path":"/","pathType":"Prefix"}]}}],"tls":[{"hosts":["www.bruzco.com","bruzco.com"],"secretName":"bruzcofantasy-tls"}]}}
+    kubernetes.io/ingress.class: nginx
+  creationTimestamp: "2023-01-31T02:37:16Z"
+  generation: 4
+  name: angular-site-ingress
+  namespace: football-prod
+  resourceVersion: "135083608"
+  uid: 694a6278-d51c-4018-8338-ea4264096deb
+spec:
+  rules:
+    - host: www.bruzcofantasy.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: angular-site-internal-service
+                port:
+                  number: 4200
+            path: /
+            pathType: Prefix
+    - host: bruzcofantasy.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: angular-site-internal-service
+                port:
+                  number: 4200
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - www.bruzcofantasy.com
+        - bruzcofantasy.com
+      secretName: bruzcofantasy-tls
+status:
+  loadBalancer:
+    ingress:
+      - ip: 146.190.3.13
